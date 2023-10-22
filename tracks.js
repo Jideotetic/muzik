@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   async function fetchTracks() {
-    const apiKey = process.env.API_KEY;
+    const apiKey = "3b217969";
     const searchQuery = "music";
     const apiUrl = `https://api.jamendo.com/v3.0/tracks`;
 
