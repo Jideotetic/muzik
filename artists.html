@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/images/icons8-music-32.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Muzik</title>
-    <!-- <script
+    <script
       src="https://kit.fontawesome.com/d9b8043dd4.js"
       crossorigin="anonymous"
-    ></script> -->
+    ></script>
     <script src="index.js" defer></script>
     <script src="artists.js" defer></script>
   </head>
@@ -33,17 +38,18 @@
           <li><a href="/artists.html" class="text-red-500">Artists</a></li>
         </ul>
       </nav>
+
       <label class="cursor-pointer md:hidden transition-all duration-1000">
-        <input class="peer hidden" type="checkbox" />
-        <div
-          class="w-8 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[11px] peer-checked:rotate-[45deg] transition-all duration-500"
-        ></div>
-        <div
-          class="w-6 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:opacity-0 transition-all duration-500"
-        ></div>
-        <div
-          class="w-8 h-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[-5px] peer-checked:rotate-[-45deg] transition-all duration-500"
-        ></div>
+        <input id="hamburger" class="peer hidden" type="checkbox" />
+        <span
+          class="block w-8 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[11px] peer-checked:rotate-[45deg] transition-all duration-500"
+        ></span>
+        <span
+          class="block w-6 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:opacity-0 transition-all duration-500"
+        ></span>
+        <span
+          class="block w-8 h-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[-5px] peer-checked:rotate-[-45deg] transition-all duration-500"
+        ></span>
       </label>
 
       <input
@@ -52,26 +58,42 @@
         class="appearance-none w-16 h-9 rounded-full fixed bottom-4 right-4 z-50 transition-all duration-1000 bg-slate-800 dark:bg-slate-100 cursor-pointer before:contents-[''] before:w-7 before:h-7 before:rounded-[50%] before:bg-blue-500 before:absolute before:top-[50%] before:-translate-y-[50%] before:left-1 before:transition-all before:duration-1000 checked:bg-slate-800 checked:before:left-8 checked:before:bg-red-500"
       />
     </header>
+
+    <!-- Background image -->
     <div
       class="h-[50%] bg-cover bg-no-repeat bg-center"
       style="background-image: url(/images/bg-image.jpg)"
     ></div>
-    <main class="p-3 border border-blue-500">
-      <h1 class="text-4xl">I am main</h1>
+    <!-- Background image -->
+
+    <main class="p-3 space-y-4">
+      <h2 class="text-4xl border-b-2 border-red-500 font-semibold">Artists</h2>
     </main>
-    <footer class="p-3 border border-red-500">
-      Background photo by
-      <a
-        href="https://unsplash.com/@silivan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-        class="underline hover:no-underline"
-        >Silivan Munguarakarama</a
-      >
-      on
-      <a
-        href="https://unsplash.com/photos/black-and-red-wireless-headphones-NrR9gn3lFKU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-        class="underline hover:no-underline"
-        >Unsplash</a
-      >
+
+    <footer class="p-3 text-center">
+      <p>
+        Background photo by
+        <a
+          href="https://unsplash.com/@silivan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+          class="underline hover:no-underline"
+          >Silivan Munguarakarama</a
+        >
+        on
+        <a
+          href="https://unsplash.com/photos/black-and-red-wireless-headphones-NrR9gn3lFKU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+          class="underline hover:no-underline"
+          >Unsplash</a
+        >
+      </p>
+
+      <p>
+        Favicon by
+        <a
+          href="https://icons8.com/icons/set/favicon-music"
+          class="underline hover:no-underline"
+          >Icons8</a
+        >
+      </p>
     </footer>
   </body>
 </html>

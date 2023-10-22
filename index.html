@@ -3,12 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/images/icons8-music-32.png"
+      type="image/x-icon"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Muzik</title>
-    <!-- <script
+    <script
       src="https://kit.fontawesome.com/d9b8043dd4.js"
       crossorigin="anonymous"
-    ></script> -->
+    ></script>
     <script src="index.js" defer></script>
     <script src="tracks.js" defer></script>
   </head>
@@ -33,17 +38,18 @@
           <li><a href="/artists.html">Artists</a></li>
         </ul>
       </nav>
+
       <label class="cursor-pointer md:hidden transition-all duration-1000">
-        <input class="peer hidden" type="checkbox" />
-        <div
-          class="w-8 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[11px] peer-checked:rotate-[45deg] transition-all duration-500"
-        ></div>
-        <div
-          class="w-6 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:opacity-0 transition-all duration-500"
-        ></div>
-        <div
-          class="w-8 h-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[-5px] peer-checked:rotate-[-45deg] transition-all duration-500"
-        ></div>
+        <input id="hamburger" class="peer hidden" type="checkbox" />
+        <span
+          class="block w-8 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[11px] peer-checked:rotate-[45deg] transition-all duration-500"
+        ></span>
+        <span
+          class="block w-6 h-1 mb-1 bg-slate-800 dark:bg-slate-100 peer-checked:opacity-0 transition-all duration-500"
+        ></span>
+        <span
+          class="block w-8 h-1 bg-slate-800 dark:bg-slate-100 peer-checked:translate-y-[-5px] peer-checked:rotate-[-45deg] transition-all duration-500"
+        ></span>
       </label>
 
       <input
@@ -52,26 +58,98 @@
         class="appearance-none w-16 h-9 rounded-full fixed bottom-4 right-4 z-50 transition-all duration-1000 bg-slate-800 dark:bg-slate-100 cursor-pointer before:contents-[''] before:w-7 before:h-7 before:rounded-[50%] before:bg-blue-500 before:absolute before:top-[50%] before:-translate-y-[50%] before:left-1 before:transition-all before:duration-1000 checked:bg-slate-800 checked:before:left-8 checked:before:bg-red-500"
       />
     </header>
+
+    <!-- Background image -->
     <div
       class="h-[50%] bg-cover bg-no-repeat bg-center"
       style="background-image: url(/images/bg-image.jpg)"
     ></div>
-    <main class="p-3 border border-blue-500">
-      <h1 class="text-4xl">I am main</h1>
+    <!-- Background image -->
+
+    <main class="p-3 space-y-4">
+      <h2 class="text-4xl border-b-2 border-red-500 font-semibold">Tracks</h2>
+
+      <div id="player" class="flex flex-col items-center gap-5 text-center">
+        <div id="track-details" class="flex flex-col items-center gap-2">
+          <div
+            id="track-image"
+            class="h-60 w-60 bg-cover bg-no-repeat bg-center rounded"
+            style="background-image: url(/images/track-bg.jpg)"
+          ></div>
+          <span id="track-name" class="text-2xl font-medium"></span>
+          <span id="track-artist" class="text-xl"></span>
+        </div>
+
+        <div id="buttons" class="flex gap-6">
+          <div id="prev-track">
+            <i class="fa-solid fa-backward-step cursor-pointer"></i>
+          </div>
+          <div id="playpause-track">
+            <i class="fa-solid fa-circle-play cursor-pointer"></i>
+          </div>
+          <div id="next-track">
+            <i class="fa-solid fa-forward-step cursor-pointer"></i>
+          </div>
+        </div>
+
+        <div
+          class="flex justify-center items-center gap-2 w-[70%] max-w-[600px]"
+        >
+          <div id="current-time">00:00</div>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="0"
+            id="seek_slider"
+            class="cursor-pointer appearance-none bg-slate-800 dark:bg-slate-100 w-[70%] h-2 rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 dark:[&::-webkit-slider-thumb]:bg-red-500"
+          />
+          <div id="total-duration">00:00</div>
+        </div>
+
+        <div
+          class="flex justify-center items-center gap-2 w-[40%] max-w-[300px]"
+        >
+          <i class="fa-solid fa-volume-low cursor-pointer"></i>
+          <input
+            type="range"
+            min="1"
+            max="100"
+            value="100"
+            id="volume_slider"
+            class="cursor-pointer appearance-none bg-slate-800 dark:bg-slate-100 w-[40%] h-2 rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 dark:[&::-webkit-slider-thumb]:bg-red-500"
+          />
+          <i class="fa-solid fa-volume-high"></i>
+        </div>
+      </div>
+
+      <ul id="track-list" class="flex flex-col gap-3 max-w-3xl mx-auto"></ul>
     </main>
-    <footer class="p-3 border border-red-500">
-      Background photo by
-      <a
-        href="https://unsplash.com/@silivan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-        class="underline hover:no-underline"
-        >Silivan Munguarakarama</a
-      >
-      on
-      <a
-        href="https://unsplash.com/photos/black-and-red-wireless-headphones-NrR9gn3lFKU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
-        class="underline hover:no-underline"
-        >Unsplash</a
-      >
+
+    <footer class="p-3 text-center text-xs">
+      <p>
+        Background photo by
+        <a
+          href="https://unsplash.com/@silivan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+          class="underline hover:no-underline"
+          >Silivan Munguarakarama</a
+        >
+        on
+        <a
+          href="https://unsplash.com/photos/black-and-red-wireless-headphones-NrR9gn3lFKU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+          class="underline hover:no-underline"
+          >Unsplash</a
+        >
+      </p>
+
+      <p>
+        Favicon by
+        <a
+          href="https://icons8.com/icons/set/favicon-music"
+          class="underline hover:no-underline"
+          >Icons8</a
+        >
+      </p>
     </footer>
   </body>
 </html>
