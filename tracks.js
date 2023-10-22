@@ -13,9 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const volumeSlider = document.getElementById("volume-slider");
   const currentTime = document.getElementById("current-time");
   const totalDuration = document.getElementById("total-duration");
-
   const highVolume = document.querySelector(".fa-volume-high");
   const lowVolume = document.querySelector(".fa-volume-low");
+  const newTracks = document.getElementById("new-tracks");
 
   let trackIndex = 0;
   let isPlaying = false;
@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
   playingSlider.addEventListener("change", playProgress);
   highVolume.addEventListener("click", increaseVolume);
   lowVolume.addEventListener("click", decreaseVolume);
+  newTracks.addEventListener("click", () => {
+    trackList.innerHTML = "";
+    fetchTracks();
+  });
 
   function createTrack(item) {
     const track = document.createElement("li");
