@@ -101,7 +101,7 @@
             min="1"
             max="100"
             value="0"
-            id="seek_slider"
+            id="playing-slider"
             class="cursor-pointer appearance-none bg-slate-800 dark:bg-slate-100 w-[70%] h-2 rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 dark:[&::-webkit-slider-thumb]:bg-red-500"
           />
           <div id="total-duration">00:00</div>
@@ -116,17 +116,23 @@
             min="1"
             max="100"
             value="100"
-            id="volume_slider"
+            id="volume-slider"
             class="cursor-pointer appearance-none bg-slate-800 dark:bg-slate-100 w-[40%] h-2 rounded-full [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-500 dark:[&::-webkit-slider-thumb]:bg-red-500"
           />
-          <i class="fa-solid fa-volume-high"></i>
+          <i class="fa-solid fa-volume-high cursor-pointer"></i>
         </div>
       </div>
 
       <ul id="track-list" class="flex flex-col gap-3 max-w-3xl mx-auto"></ul>
     </main>
 
-    <footer class="p-3 text-center text-xs">
+    <footer
+      class="p-3 text-center text-xs bg-slate-100 shadow-2xl shadow-slate-800 dark:bg-slate-800 dark:shadow-slate-100"
+    >
+      <p>
+        Songs fetch from
+        <a href="https://developer.jamendo.com/v3.0/tracks">jamendo API</a>
+      </p>
       <p>
         Background photo by
         <a

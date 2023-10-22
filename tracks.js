@@ -9,10 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("next-track");
   const prevBtn = document.getElementById("prev-track");
 
-  const seekSlider = document.getElementById("seek_slider");
-  const volumeSlider = document.getElementById("volume_slider");
+  const playingSlider = document.getElementById("playing-slider");
+  const volumeSlider = document.getElementById("volume-slider");
   const currentTime = document.getElementById("current-time");
   const totalDuration = document.getElementById("total-duration");
+
+  const highVolume = document.querySelector(".fa-volume-high");
+  const lowVolume = document.querySelector(".fa-volume-low");
 
   let trackIndex = 0;
   let isPlaying = false;
@@ -23,18 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (localStorage.tracks) {
     tracks = JSON.parse(localStorage.getItem("tracks"));
+    renderTracks();
+    loadTrack(trackIndex);
   } else {
     fetchTracks();
   }
-
-  loadTrack(trackIndex);
-  renderTracks();
 
   playPauseBtn.addEventListener("click", playPauseTrack);
   nextBtn.addEventListener("click", nextTrack);
   prevBtn.addEventListener("click", prevTrack);
   volumeSlider.addEventListener("change", setVolume);
-  seekSlider.addEventListener("change", seekTo);
+  playingSlider.addEventListener("change", playProgress);
+  highVolume.addEventListener("click", increaseVolume);
+  lowVolume.addEventListener("click", decreaseVolume);
 
   function createTrack(item) {
     const track = document.createElement("li");
@@ -62,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
       tracks = tracks.filter((track) => {
         return track.audio !== "";
       });
+      renderTracks();
+      loadTrack(trackIndex);
       localStorage.tracks = JSON.stringify(tracks);
     } catch (error) {
       console.error("Error:", error);
@@ -85,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     trackName.textContent = tracks[trackIndex].name;
     trackArtist.textContent = tracks[trackIndex].artist_name;
 
-    updateTimer = setInterval(seekUpdate, 1000);
+    updateTimer = setInterval(playProgressUpdate, 1000);
 
     currentTrack.addEventListener("ended", nextTrack);
   }
@@ -93,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function resetValues() {
     currentTime.textContent = "00:00";
     totalDuration.textContent = "00:00";
-    seekSlider.value = 0;
+    playingSlider.value = 0;
   }
 
   function playPauseTrack() {
@@ -102,8 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       pauseTrack();
     }
-
-    console.log(isPlaying);
   }
 
   function playTrack() {
@@ -146,23 +150,43 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function seekTo() {
-    const seekto = currentTrack.duration * (seekSlider.value / 100);
-    currentTrack.currentTime = seekto;
+  function playProgress() {
+    const playProgress = currentTrack.duration * (playingSlider.value / 100);
+    currentTrack.currentTime = playProgress;
   }
 
   function setVolume() {
     currentTrack.volume = volumeSlider.value / 100;
-
-    console.log(currentTrack.volume);
   }
 
-  function seekUpdate() {
-    let seekPosition = 0;
+  function increaseVolume() {
+    let volume = volumeSlider.value;
+    if (volume <= 90) {
+      volume = +volume + 10;
+      currentTrack.volume = volume / 100;
+      volumeSlider.value = volume;
+    } else {
+      return;
+    }
+  }
+
+  function decreaseVolume() {
+    let volume = volumeSlider.value;
+    if (volume > 0) {
+      volume -= 10;
+      currentTrack.volume = volume / 100;
+      volumeSlider.value = volume;
+    } else {
+      return;
+    }
+  }
+
+  function playProgressUpdate() {
+    let playPosition = 0;
 
     if (!isNaN(currentTrack.duration)) {
-      seekPosition = currentTrack.currentTime * (100 / currentTrack.duration);
-      seekSlider.value = seekPosition;
+      playPosition = currentTrack.currentTime * (100 / currentTrack.duration);
+      playingSlider.value = playPosition;
 
       let currentMinutes = Math.floor(currentTrack.currentTime / 60);
       let currentSeconds = Math.floor(
