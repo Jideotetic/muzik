@@ -44,9 +44,15 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchTracks();
   });
 
-  function createTrack(item) {
+  function createTrack(item, i) {
     const track = document.createElement("li");
-    track.classList.add("flex", "gap-3", "items-center");
+    track.classList.add(
+      "flex",
+      "gap-3",
+      "items-center",
+      "cursor-pointer",
+      "hover:bg-slate-400"
+    );
 
     track.innerHTML = `
      <img src=${item.album_image} class="h-10 w-10"></img>
@@ -54,6 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
 
     trackList.appendChild(track);
+    track.addEventListener("click", () => {
+      loadTrack(i);
+      playTrack();
+    });
   }
 
   async function fetchTracks() {
@@ -79,8 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderTracks() {
-    tracks.forEach((track) => {
-      createTrack(track);
+    tracks.forEach((track, i) => {
+      createTrack(track, i);
     });
   }
 
