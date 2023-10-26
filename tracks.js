@@ -61,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     trackList.appendChild(track);
     track.addEventListener("click", () => {
+      const playBtn = document.getElementById(`play-btn${i}`);
       loadTrack(i);
-      playTrack();
     });
   }
 

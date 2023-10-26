@@ -68,9 +68,29 @@
 
     <main class="p-3 space-y-4">
       <h2 class="text-4xl border-b-2 border-red-500 font-semibold">Artists</h2>
+      <div class="flex justify-center">
+        <button
+          type="button"
+          id="new-artists"
+          class="p-2 bg-blue-500 text-slate-100 rounded"
+        >
+          Load New artists
+        </button>
+      </div>
+      <ul id="artist-list" class="flex flex-wrap gap-3 max-w-3xl mx-auto"></ul>
     </main>
 
-    <footer class="p-3 text-center">
+    <footer
+      class="p-3 text-center text-xs bg-slate-100 shadow-2xl shadow-slate-800 dark:bg-slate-800 dark:shadow-slate-100"
+    >
+      <p>
+        Artists fetch from
+        <a
+          href="https://developer.jamendo.com/v3.0/tracks"
+          class="underline hover:no-underline"
+          >jamendo API</a
+        >
+      </p>
       <p>
         Background photo by
         <a
