@@ -63,6 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     track.addEventListener("click", () => {
       const playBtn = document.getElementById(`play-btn${i}`);
       loadTrack(i);
+      playPauseTrack();
     });
   }
 
